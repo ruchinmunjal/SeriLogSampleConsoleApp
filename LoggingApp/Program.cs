@@ -1,6 +1,7 @@
 ﻿using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 
 namespace LoggingApp
@@ -66,7 +67,7 @@ namespace LoggingApp
         private static void SetupLogging() => Log.Logger = new LoggerConfiguration()
                                     .MinimumLevel.Debug()
                                     .WriteTo.Console()
-                                    .WriteTo.File(@"C:\users\email\Batcave\logs\logapp.txt",
+                                    .WriteTo.File(ConfigurationManager.AppSettings["logLocation"],
                                                     rollingInterval: RollingInterval.Day)
                                     .CreateLogger();
 
